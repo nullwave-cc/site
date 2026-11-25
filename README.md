@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logotype-dark.svg">
+    <img src="assets/logotype-light.svg" width="420" alt="nullwave">
+  </picture>
+</p>
+
 # nullwave.cc
 
 Source for [nullwave.cc](https://nullwave.cc), served with GitHub Pages.
