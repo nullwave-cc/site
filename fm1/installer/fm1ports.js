@@ -20,7 +20,7 @@
 
 // port names asked without being picked (any case, part of the name). "FM1": the Open firmware's "FM1 Community"
 // The FM-1 firmwares of the family name their own port after themselves (an FM-1 running one shows as that name alone):
-// "optimist", "sloop", "melodee", "loom-8" / "loom8", as tools/fm1ports.py asks them too.
+// the other firmwares' own names, as tools/fm1ports.py asks them too.
 export const PORT_NAMES = ["fm-1", "fm1", "felucca", "ota", "composite", "sinco", "usb-midi", "optimist", "sloop", "melodee", "loom-8", "loom8"];
 export function usualName(name, names = PORT_NAMES) {
   const n = (name || "").toLowerCase();
@@ -86,7 +86,7 @@ export class Asking {
 }
 
 // one search: the port pairs that answer a HELLO -> [{ name, firmware, words, input, output }] (firmware: the name
-// and version it gives, e.g. "X0X 1.1"). Asks up to `tries` times, `ms` apart, stopping when every port has answered;
+// and version it gives, e.g. "NAME 1.1"). Asks up to `tries` times, `ms` apart, stopping when every port has answered;
 // skip(name): ports not to ask. No BYE after it: a device stops by itself 5 s after the last HELLO, and a BYE would
 // also stop a reader page that is listening to it
 export async function askAll(access, { ms = 500, tries = ASK_TRIES, skip = () => false } = {}) {

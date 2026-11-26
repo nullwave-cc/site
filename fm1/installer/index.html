@@ -2,13 +2,13 @@
 <!-- SPDX-License-Identifier: MPL-2.0
      Copyright (C) 2026 Charles Vestal
      Copyright (C) 2026 Leo Kuroshita (@kurogedelic), Hügelton Instruments
-     A firmware's installer page: Felucca's (by way of X0X and FoMni-1), English first. tools/make_site.py fills in
+     A firmware's installer page, English first. tools/make_site.py fills in
      the firmware's name, source and credits ({{...}}) and inlines fm1pkg.js, fm1ota.js and the package's metadata. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Install · nullwave</title>
+<title>nullwave fm1 installer</title>
 <style>
   /* light: the coral and the dim brown darkened just enough for 4.5:1 on the cream (and white on the coral) */
   :root { --bg: #faf4e8; --fg: #48392f; --dim: #6e5c4b; --accent: #b84a1e; --on-accent: #fff; --bad: #a3271b; --focus: #1f6fd1; }
@@ -212,7 +212,7 @@ addEventListener("DOMContentLoaded", () => {   /* (the bar comes later in the pa
     <ul id="portlist" class="small"></ul>
     <p id="pickstatus" role="status"></p>
   </div></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;INSTALLING&quot;}]" role="img" aria-label="nullwave handing over to the FM-1's updater"></div></div></div></section><section class="in-step" id="done" data-step="4"><div class="in-grid"><div class="in-text"><div class="kicker"><b>04</b> Step 4 of 4</div><h2>Done.</h2><p>The FM-1 restarts into <b class="nb">nullwave</b>: the logo says INSTALLED and the version, then PLAY. Your songs and settings stay.</p><div class="btns"><a class="btn" href="../quick-start/">Quick start <span class="arr">→</span></a><a class="btn" href="/fm1/manual/">Manual</a></div></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;INSTALLED&quot;}, {&quot;on&quot;: &quot;SCREEN,KEYS&quot;, &quot;screen&quot;: &quot;PLAY_FM6&quot;}]" role="img" aria-label="The FM-1 running nullwave"></div></div></div></section><section class="in-more" id="by-hand"><div class="kicker">If it goes wrong</div><h2>By hand.</h2><div class="in-grid"><div class="in-text"><p><strong>The installer can't find the FM-1, or <b class="nb">nullwave</b> starts but USB doesn't answer:</strong> switch the FM-1 off, hold <b>REC</b> and switch it on. It shows UPDATE MODE (REC); press Install again.</p><p><strong><b class="nb">nullwave</b> fails to start twice in a row:</strong> it opens SAFE MODE, USB on. Press Install here, or PLAY on the FM-1 to try again.</p><p><strong>Nothing starts at all:</strong> restore the full backup from step 2.</p><p class="small"><span data-t="brick"></span>
-    <a href="https://github.com/hugelton/felucca-bsp/tree/main/tools" data-t="bricklink">recovering an FM-1 that won't start</a></p></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;REC&quot;, &quot;screen&quot;: &quot;@splash&quot;}, {&quot;on&quot;: &quot;REC&quot;, &quot;press&quot;: &quot;REC&quot;, &quot;screen&quot;: &quot;UPDATE_MODE&quot;}, {&quot;on&quot;: &quot;PLAY STOP,REC&quot;, &quot;screen&quot;: &quot;SAFE_MODE&quot;}]" role="img" aria-label="REC held at power-on: update mode"></div></div></div></section><section class="in-more" id="factory"><div class="kicker">Start over</div><h2>Reset to factory.</h2><div class="in-grid"><div class="in-text"><p>Puts <b class="nb">nullwave</b> back as it was just after installing. It is separate from installing, and it <strong>erases</strong>:</p><ul class="fr-list"><li>every song, with its scenes, patterns and channel names</li><li>the 32 user sound slots and the FM6 bank</li><li>every setting (SETTINGS, the octave, the channel the keys play)</li></ul><p>It keeps <b class="nb">nullwave</b> itself, the FM-1's own calibration and its Bluetooth pairings, and it never touches the FM-1's updater. On the FM-1 itself: SETTINGS → SYSTEM 2, turn RESET (KNOB 1), then hold PLAY for 3 seconds.</p><div class="fr-box"><div class="btns"><button class="btn" id="fr-connect" type="button">Connect the FM-1</button><button class="btn" id="fr-backup" type="button" disabled>Download a backup first</button></div><label class="fr-type">Type <b>RESET</b> to confirm <input id="fr-word" autocomplete="off" spellcheck="false" disabled></label><div class="btns"><button class="btn fr-go" id="fr-go" type="button" disabled>Erase and reset</button></div><div class="fr-ring" id="fr-ring" hidden><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="fr-track"/><circle cx="60" cy="60" r="52" class="fr-arc" id="fr-arc"/><circle cx="60" cy="60" r="30" class="fr-disc"/><line x1="36" y1="84" x2="84" y2="36" class="fr-slash"/></svg><span id="fr-pc">0%</span></div><p class="fr-status" id="fr-status" role="status" aria-live="polite"></p></div></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;FACTORY_RESET&quot;}, {&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;INSTALLED&quot;}]" role="img" aria-label="The FM-1 erasing nullwave's songs and settings, then starting as new"></div></div></div></section><section class="in-more" id="official"><div class="kicker">Go back</div><h2>Back to the official firmware.</h2><p class="small" data-t="back"></p><p class="small"><a href="https://www.m-vave.com/download" target="_blank" rel="noopener">www.m-vave.com/download<span class="sr" data-t="newtab"> (opens in a new tab)</span></a></p><h2 data-t="stockh">Back to the stock firmware</h2>
+    <a href="../manual/#installing-and-going-back-to-stock" data-t="bricklink">recovering an FM-1 that won't start</a></p></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;REC&quot;, &quot;screen&quot;: &quot;@splash&quot;}, {&quot;on&quot;: &quot;REC&quot;, &quot;press&quot;: &quot;REC&quot;, &quot;screen&quot;: &quot;UPDATE_MODE&quot;}, {&quot;on&quot;: &quot;PLAY STOP,REC&quot;, &quot;screen&quot;: &quot;SAFE_MODE&quot;}]" role="img" aria-label="REC held at power-on: update mode"></div></div></div></section><section class="in-more" id="factory"><div class="kicker">Start over</div><h2>Reset to factory.</h2><div class="in-grid"><div class="in-text"><p>Puts <b class="nb">nullwave</b> back as it was just after installing. It is separate from installing, and it <strong>erases</strong>:</p><ul class="fr-list"><li>every song, with its scenes, patterns and channel names</li><li>the 32 user sound slots and the FM6 bank</li><li>every setting (SETTINGS, the octave, the channel the keys play)</li></ul><p>It keeps <b class="nb">nullwave</b> itself, the FM-1's own calibration and its Bluetooth pairings, and it never touches the FM-1's updater. On the FM-1 itself: SETTINGS → SYSTEM 2, turn RESET (KNOB 1), then hold PLAY for 3 seconds.</p><div class="fr-box"><div class="btns"><button class="btn" id="fr-connect" type="button">Connect the FM-1</button><button class="btn" id="fr-backup" type="button" disabled>Download a backup first</button></div><label class="fr-type">Type <b>RESET</b> to confirm <input id="fr-word" autocomplete="off" spellcheck="false" disabled></label><div class="btns"><button class="btn fr-go" id="fr-go" type="button" disabled>Erase and reset</button></div><div class="fr-ring" id="fr-ring" hidden><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="fr-track"/><circle cx="60" cy="60" r="52" class="fr-arc" id="fr-arc"/><circle cx="60" cy="60" r="30" class="fr-disc"/><line x1="36" y1="84" x2="84" y2="36" class="fr-slash"/></svg><span id="fr-pc">0%</span></div><p class="fr-status" id="fr-status" role="status" aria-live="polite"></p></div></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;FACTORY_RESET&quot;}, {&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;INSTALLED&quot;}]" role="img" aria-label="The FM-1 erasing nullwave's songs and settings, then starting as new"></div></div></div></section><section class="in-more" id="official"><div class="kicker">Go back</div><h2>Back to the official firmware.</h2><p class="small" data-t="back"></p><p class="small"><a href="https://www.m-vave.com/download" target="_blank" rel="noopener">www.m-vave.com/download<span class="sr" data-t="newtab"> (opens in a new tab)</span></a></p><h2 data-t="stockh">Back to the stock firmware</h2>
   <p class="small" data-t="stockwhy"></p>
   <ol class="small">
     <li><span data-t="stock1"></span> <a id="stocklink" href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/FM-1.fwsc">FM-1.fwsc</a></li>
@@ -403,8 +403,7 @@ $("fr-go").addEventListener("click", async () => {
   </form>
 </dialog>
 <div class="nw-credits">
-  <p class="small"><b class="nb">nullwave</b> is built on fm1-base and felucca-bsp, from Felucca by Leo Kuroshita (@kurogedelic), <a href="https://hugelton.com" target="_blank" rel="noopener">Hügelton Instruments<span class="sr" data-t="newtab"> (opens in a new tab)</span></a>. Built on fm1-base and felucca-bsp, with engines from Felucca-Engines.<br>
-    Fonts: Barlow Semi Condensed (SIL OFL 1.1). M-VAVE and FM-1 are trademarks of their respective owners.<br>
+  <p class="small">Fonts: Barlow Semi Condensed (SIL OFL 1.1). M-VAVE and FM-1 are trademarks of their respective owners.<br>
     <span data-t="license"></span> <a href="https://github.com/nullwave-cc/fm1" target="_blank" rel="noopener">github.com/nullwave-cc/fm1<span class="sr" data-t="newtab"> (opens in a new tab)</span></a></p>
 </div>
 <script type="module">
@@ -430,7 +429,7 @@ $("fr-go").addEventListener("click", async () => {
 
 // port names asked without being picked (any case, part of the name). "FM1": the Open firmware's "FM1 Community"
 // The FM-1 firmwares of the family name their own port after themselves (an FM-1 running one shows as that name alone):
-// "optimist", "sloop", "melodee", "loom-8" / "loom8", as tools/fm1ports.py asks them too.
+// the other firmwares' own names, as tools/fm1ports.py asks them too.
 const PORT_NAMES = ["fm-1", "fm1", "felucca", "ota", "composite", "sinco", "usb-midi", "optimist", "sloop", "melodee", "loom-8", "loom8"];
 function usualName(name, names = PORT_NAMES) {
   const n = (name || "").toLowerCase();
@@ -496,7 +495,7 @@ class Asking {
 }
 
 // one search: the port pairs that answer a HELLO -> [{ name, firmware, words, input, output }] (firmware: the name
-// and version it gives, e.g. "X0X 1.1"). Asks up to `tries` times, `ms` apart, stopping when every port has answered;
+// and version it gives, e.g. "NAME 1.1"). Asks up to `tries` times, `ms` apart, stopping when every port has answered;
 // skip(name): ports not to ask. No BYE after it: a device stops by itself 5 s after the last HELLO, and a BYE would
 // also stop a reader page that is listening to it
 async function askAll(access, { ms = 500, tries = ASK_TRIES, skip = () => false } = {}) {
@@ -594,7 +593,7 @@ function checkUfw(image) {
 }
 
 // the UFW entries of a logical image, by type (0 flash.bin, 100 ota.bin): {off, len}. The header and the
-// entry list are ciphered with key 0xFFFF (felucca-bsp chip/ota.c ota_jl_enc); the CRCs are not checked here
+// entry list are ciphered with key 0xFFFF (the chip's update protocol); the CRCs are not checked here
 function ufwEntries(image) {
   const dec = (off, n) => ufwDec(image.slice(off, off + n), n);
   const rd16 = (b, o) => b[o] | (b[o + 1] << 8);
@@ -608,12 +607,12 @@ function ufwEntries(image) {
   return out;
 }
 
-// M-VAVE's stock files (the .fwsc as downloaded) whose SHA-256 is pinned, by the product they carry (V15 and V16, as felucca-bsp's tools/fm1_rescue.py pins them). A file that says it is
+// M-VAVE's stock files (the .fwsc as downloaded) whose SHA-256 is pinned, by the product they carry (V15 and V16, as the rescue tool pins them). A file that says it is
 // one of these must be that very file, byte for byte: the digest covers every file in it, the loader and the layout, so
 // nothing else needs parsing. Other versions of M-VAVE's firmware are not pinned (checkUfw and the FM-1 itself check them)
 const STOCK_FILES = {
   "FM-1_015": { size: 699956, sha256: "db1642b2b6fa5c2cccb11ffd13878068bb28601678d3644049f99dc40e7edb8a" },   // V15
-  "FM-1_016": { size: 718196, sha256: "d017fb65e70aca97ee29d944470c3515a74581df5c0576bf70de917c7b2b61d5" },   // V16 (felucca-bsp tools/fm1_rescue.py's STOCK)
+  "FM-1_016": { size: 718196, sha256: "d017fb65e70aca97ee29d944470c3515a74581df5c0576bf70de917c7b2b61d5" },   // V16 (the rescue tool's STOCK)
 };
 
 async function sha256hex(bytes) {
@@ -645,16 +644,16 @@ function stockChecksum(product, size, sha256) {
 // Step 1: the running firmware reads parts of the package and stages the update
 // loader. Step 2: the loader reads the whole image and writes it. In both steps
 // the device sends cmd 0x30 read requests on the logical image and we answer.
-// Step 2 is the fast install when the loader can (felucca-bsp loader/ldr_core.c, LDR_FAST_CHUNK): before the upgrade
+// Step 2 is the fast install when the loader can (the update loader, LDR_FAST_CHUNK): before the upgrade
 // command we say cmd 0x31 [1, 4096]; a loader that answers it within 0.5 s reads a table of flash.bin's 4 KiB sectors
 // (CRC16, CRC-32) at 0xD0000000 + flash.bin's offset, checks it against the package before anything is erased, and asks
 // only for the sectors that differ, 4 KiB at a time (a cut-off install resumes: what was written is skipped); it says
 // how far it compared with cmd 0x32 [sectors compared, all]. A loader that says nothing gets the classic protocol,
-// unchanged; a package without a Felucca loader (M-VAVE's firmware: M-VAVE's loader) never hears the hello.
+// unchanged; a package without such a loader (M-VAVE's firmware: M-VAVE's loader) never hears the hello.
 
 
 const HS_QUERY = [0xF0, 0x00, 0x32, 0x45, 0x00, 0x00, 0x00, 0x40, 0x7F, 0xF7];
-// the handshake with the one-byte body 01 (00 59 11, length 1, 01, checksum FE): a firmware on felucca-bsp's chip/ota.c
+// the handshake with the one-byte body 01 (00 59 11, length 1, 01, checksum FE): a firmware on the chip's update protocol
 // answers HS_QUERY with its name, '_' and three digits only ("FM-1_601": M-UPGRADE 3.11 refuses more) and this one with
 // its whole identity ("FM-1_6010000"). M-VAVE's firmware, the update loaders and older builds don't answer it.
 // (PERF-1's scheme: its installers and ours ask the same way)
@@ -680,7 +679,7 @@ const OPEN_LOADER_RE = /^ota-FM1C_[0-9a-f]+$/;
 // update (see watch), or one that answers the screen reader's HELLO (answering: every fm1-base firmware does)
 // M-VAVE's FM-1 firmware, any version: "FM-1_0" and two digits ("FM-1_016"; fm1-base's dev builds are
 // "FM-1_x00", its releases longer; m-bootloader's installer is FM-1_099). Whether a package is safe to write is the device's to check
-// (felucca-bsp chip/ota.c: a well-made writer, a bootable boot area), not a list of known files
+// (the chip's update protocol: a well-made writer, a bootable boot area), not a list of known files
 const IS_STOCK = (product) => /^FM-1_0\d\d$/.test(product) && product !== "FM-1_099";
 
 // the update loader of M-VAVE's own firmware: the stock one ("ota-FM-1_0" and two digits) and the Open firmware's (OPEN_LOADER_RE).
@@ -851,7 +850,7 @@ function parseFrame(pkt) {
   return (~s & 0xFF) === u[6 + n] ? { cmd: u[2], body: u.slice(6, 6 + n) } : null;
 }
 
-// the UFW's CRC16 (XMODEM: poly 0x1021, init 0), as felucca-bsp chip/ota.c ota_crc16
+// the UFW's CRC16 (XMODEM: poly 0x1021, init 0), as the chip's update protocol has it
 const UFW_CRC16_T = (() => {
   const t = new Uint16Array(256);
   for (let n = 0; n < 256; n++) { let c = n << 8; for (let k = 0; k < 8; k++) c = c & 0x8000 ? (c << 1) ^ 0x1021 : c << 1; t[n] = c & 0xFFFF; }
@@ -872,7 +871,7 @@ function sectorTable(image, off, n) {
   return t;
 }
 
-// the package brings a Felucca update loader (its marker): only that loader hears the fast install's hello
+// the package brings its own update loader (its marker): only that loader hears the fast install's hello
 function hasLoader(image) {
   outer: for (let i = image.indexOf(LOADER_MARK[0]); i >= 0 && i + LOADER_MARK.length <= image.length;
     i = image.indexOf(LOADER_MARK[0], i + 1)) {
@@ -1089,7 +1088,7 @@ class Updater {
   }
 
   // m-bootloader (github.com/jvitkauskas/m-bootloader, MIT) after an install: the running firmware (product)
-  // stages the package's installer (no flash.bin: any well-made writer, felucca-bsp chip/ota.c) and resets; the bootloader
+  // stages the package's installer (no flash.bin: any well-made writer) and resets; the bootloader
   // runs it, it rewrites the boot area [0, 0x4000) only and restarts into the firmware. It never talks to us:
   // we wait for the firmware to come back. A firmware that does not know it refuses it, and nothing is written.
   async installBoot(image, product, onStep) {
@@ -1170,7 +1169,7 @@ class Updater {
   }
 
   // step 2 with the loader found by find()/waitFor(): the fast install when the loader answers its hello (not with
-  // this.classic, nor for a package without a Felucca loader), else the classic one. step("write", served, bytes) as
+  // this.classic, nor for a package without such a loader), else the classic one. step("write", served, bytes) as
   // before; in the fast install step("write", served, bytes, pct) with pct the share of the app area compared or
   // written (0..99, never back), and step("mode", "fast" | "classic") first
   async write(ota, image, step) {
