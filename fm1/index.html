@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nullwave fm1</title>
+<meta name="description" content="nullwave fm1: firmware that turns the M-VAVE FM-1 into a six-channel groovebox.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/BalooDa2-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="/" aria-label="nullwave home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/mark-dark.svg"><img src="/assets/mark-light.svg" width="30" height="30" alt=""></picture><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/wordmark-dark.svg"><img src="/assets/wordmark-light.svg" height="24" style="width:auto" alt="nullwave"></picture></a>
+  <ul><li class="wide"><a href="#play">Features</a></li><li><a href="#install">Install</a></li><li><a href="/fm1/quick-start/">Quick start</a></li><li class="wide"><a href="/fm1/manual/">Manual</a></li></ul>
+</div></nav>
+
+<header class="wrap hero-2">
+  <div class="reveal">
+    <div class="kicker"><b>●</b> Firmware for the M-VAVE FM-1</div>
+    <h1>null<span class="w">wave</span><br><span class="sfx">fm1</span></h1>
+    <p class="lead">Turn the FM-1 into a six-channel groovebox. Built to be played, not configured.</p>
+    <div class="btns"><a class="btn solid" href="#install">Install <span class="arr">→</span></a><a class="btn" href="/fm1/quick-start/">Quick start</a></div>
+    <div class="meta">version <i>0.3-dev</i> · not released yet</div>
+  </div>
+  <div class="stage"><div class="fm1-3d" data-mode="hero" data-screens="PLAY_MAIN,PLAY_ANALOG,PLAY_FM6,PLAY_DRUM,PLAY_CHORD,LOOP_MAIN"></div></div>
+</header>
+
+<section id="chans"><div class="wrap">
+  <div class="reveal"><div class="kicker">Six channels</div><h2>Six equal channels. Any sound on any of them.</h2><p class="lead">No fixed drum track. Any channel can be a synth, a drum kit, a sampler or a MIDI output, and each one plays up to six notes at once.</p></div>
+  <div class="chans reveal"><div><span class="n">ch 1</span><span class="e">BASS</span></div><div><span class="n">ch 2</span><span class="e">ARP</span></div><div><span class="n">ch 3</span><span class="e">LEAD</span></div><div><span class="n">ch 4</span><span class="e">KEYS</span></div><div><span class="n">ch 5</span><span class="e">PAD</span></div><div><span class="n">ch 6</span><span class="e">DRUMS</span></div></div>
+  <p class="fine reveal">A song, named your way: <span style="white-space:nowrap">SHIFT + SAVE</span> renames any channel.</p>
+</div></section>
+
+<section id="play"><div class="wrap">
+  <div class="reveal"><div class="kicker">Made for playing</div><h2>Everything within reach of two hands.</h2></div>
+  <div class="tour">
+    <div class="stick"><div class="fm1-3d" data-mode="tour" data-screens="PLAY_MAIN,FM6_OPERATOR,PLAY_FM6,LOOP_MAIN,SEQ_DRUMS,LAYER_FX,LAYER_SAVE"></div></div>
+    <div class="feats">
+      <div data-feature data-on="SCREEN,KEYS" data-screen="PLAY_MAIN" data-view="-14,46,2050,500,330"><h3>PLAY is home</h3><p>The sound wave of what you're playing, with the chord name under it. <span style="white-space:nowrap">SHIFT + HOME</span> switches to LOOP and back.</p></div>
+      <div data-feature data-on="KNOB1,KNOB2,KNOB3,KNOB4,SCREEN" data-screen="FM6_OPERATOR" data-view="10,46,2050,500,330"><h3>Four knobs, every screen</h3><p>The four knobs always change what you see on the screen. No menus to dig through mid-song.</p></div>
+      <div data-feature data-on="SELECT,PRESETS,ALGORITHM,SCREEN" data-screen="PLAY_FM6" data-view="-8,48,2050,500,330"><h3>Fourteen engines</h3><p>Pick a channel, pick a sound. From analog, FM and supersaw stacks to granular, physical models, samples and drums.</p></div>
+      <div data-feature data-on="REC,SCREEN" data-screen="LOOP_MAIN" data-view="0,50,2050,500,330"><h3>Press REC to record</h3><p>Stopped, REC waits for your first note; playing, it records at once. While you play or record, the screen shows LOOP: four channels and their steps, each pattern one to eight bars long.</p></div>
+      <div data-feature data-on="FX,KEYS" data-screen="LAYER_FX" data-view="-18,40,2050,500,330"><h3>Punch-ins while you play</h3><p>Hold FX and the keys become 27 punch-in effects, from loop repeats and filter sweeps to EQ kills, while the pattern keeps playing.</p></div>
+      <div data-feature data-on="SAVE,KEYS" data-screen="LAYER_SAVE" data-view="14,52,2050,500,330"><h3>Scenes and songs</h3><p>Put patterns together in scenes and launch them live with SAVE and a key. Chain scenes into songs, and keep eight songs on the FM-1. <span style="white-space:nowrap">SHIFT + SAVE</span> gives a channel its own name.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="screens"><div class="wrap">
+  <div class="reveal"><div class="kicker">The screens</div><h2>Clear on a small screen.</h2><p class="lead">Real screens from the firmware, in both themes. PLAY is home; while you play or record, the screen shows LOOP, and <span style="white-space:nowrap">SHIFT + HOME</span> switches between them.</p></div>
+  <div class="shots reveal">
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/PLAY_MAIN-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/PLAY_MAIN-dark.png"><source type="image/webp" srcset="/assets/screens/PLAY_MAIN-light.webp"><img src="/assets/screens/PLAY_MAIN-light.png" width="960" height="960" alt="PLAY, the home screen: the selected channel moving, with a keys strip" loading="lazy"></picture><span>Play · home</span></div>
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/LOOP_MAIN-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/LOOP_MAIN-dark.png"><source type="image/webp" srcset="/assets/screens/LOOP_MAIN-light.webp"><img src="/assets/screens/LOOP_MAIN-light.png" width="960" height="960" alt="LOOP: four channels with their steps" loading="lazy"></picture><span>Loop · playing</span></div>
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/SEQ_DRUMS-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/SEQ_DRUMS-dark.png"><source type="image/webp" srcset="/assets/screens/SEQ_DRUMS-light.webp"><img src="/assets/screens/SEQ_DRUMS-light.png" width="960" height="960" alt="Drum step sequencer" loading="lazy"></picture><span>Drum steps</span></div>
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/LAYER_FX-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/LAYER_FX-dark.png"><source type="image/webp" srcset="/assets/screens/LAYER_FX-light.webp"><img src="/assets/screens/LAYER_FX-light.png" width="960" height="960" alt="Performance effects" loading="lazy"></picture><span>Punch-ins</span></div>
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/FM6_OPERATOR-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/FM6_OPERATOR-dark.png"><source type="image/webp" srcset="/assets/screens/FM6_OPERATOR-light.webp"><img src="/assets/screens/FM6_OPERATOR-light.png" width="960" height="960" alt="FM operator page" loading="lazy"></picture><span>FM operator</span></div>
+    <div class="shot"><picture><source media="(prefers-color-scheme: dark)" type="image/webp" srcset="/assets/screens/NAME-dark.webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/screens/NAME-dark.png"><source type="image/webp" srcset="/assets/screens/NAME-light.webp"><img src="/assets/screens/NAME-light.png" width="960" height="960" alt="Renaming a channel" loading="lazy"></picture><span>Rename</span></div>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <div class="split reveal">
+    <div><div class="kicker">Why <b class="nb">nullwave</b></div><h2>A simpler way to play the FM-1.</h2></div>
+    <div><p class="lead" style="margin-top:0"><b class="nb">nullwave</b> fm1 builds on ideas from other FM-1 projects, with one goal: make the FM-1 simpler to play.</p></div>
+  </div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="reveal"><div class="kicker">Getting started</div><h2>Up and running in a minute.</h2></div>
+  <div class="steps reveal">
+    <div class="step"><span class="n">01</span><h3>Install</h3><p>Connect the FM-1 over USB and install from Chrome or Edge. Back it up with M-Flasher first; later versions install over the top and keep your songs.</p><a class="btn solid" href="/fm1/installer/">Open the installer <span class="arr">→</span></a></div>
+    <div class="step" id="start"><span class="n">02</span><h3>Quick start</h3><p>Eight short steps, from switching on to scenes.</p><a class="btn" href="/fm1/quick-start/">Read the quick start</a></div>
+    <div class="step" id="editor"><span class="n">03</span><h3>Editor</h3><p>Shape sounds and songs on a big screen, then send them to the keyboard.</p><span class="btn" aria-disabled="true">Coming later</span></div>
+  </div>
+  <p class="fine">Works in Chrome or Edge. Try it first in the <a href="/fm1/emulator/">emulator</a>, or read the <a href="/fm1/manual/">manual</a>.</p>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fbrand"><a href="/" aria-label="nullwave home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/lockup-dark.svg"><img class="lockup" src="/assets/lockup-light.svg" width="562" height="200" alt="nullwave"></picture></a><p>Open-source tools for making music.</p></div>
+  <div class="fcols">
+    <div><h4><b class="nb">nullwave</b> fm1</h4><ul><li><a href="/fm1/">Overview</a></li><li><a href="/fm1/installer/">Installer</a></li><li><a href="/fm1/quick-start/">Quick start</a></li><li><a href="/fm1/manual/">Manual</a></li><li><a href="/fm1/emulator/">Emulator</a></li><li><span>Editor <em>later</em></span></li></ul></div>
+    <div><h4>Products</h4><ul><li><a href="/fm1/"><b class="nb">nullwave</b> fm1</a></li><li><span><b class="nb">nullwave</b> learn <em>coming soon</em></span></li><li><span><b class="nb">nullwave</b> create <em>coming soon</em></span></li></ul></div>
+    <div><h4>Open source</h4><ul><li><a href="https://github.com/nullwave-cc">GitHub</a></li><li><a href="https://github.com/nullwave-cc/fm1">Firmware source</a></li><li><a href="https://github.com/nullwave-cc/fm1/issues">Report a problem</a></li><li><a href="/#about">About</a></li></ul></div>
+  </div>
+  <div class="fbase"><span><b class="nb">nullwave</b></span><span>Not affiliated with M-VAVE. FM-1 is their keyboard; <b class="nb">nullwave</b> is independent firmware for it.</span></div>
+</div></footer>
+<script src="/device.js"></script>
+</body>
+</html>
