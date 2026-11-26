@@ -133,8 +133,9 @@ a.row:hover::after{width:100%}
 .about p+p{margin-top:18px}
 .about .lead{color:var(--text)}
 
-.me{margin-top:32px;display:flex;align-items:flex-end;gap:16px}
-.me .trace{width:min(340px,78vw);height:auto;color:var(--fg);flex:none}
+.me{margin-top:32px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;max-width:100%}
+.split>*{min-width:0}
+.me .trace{width:min(340px,100%);height:auto;color:var(--fg);flex:none}
 .me figcaption{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 .made{margin-top:32px;padding-top:24px;border-top:1px solid var(--edge)}
 .made h3{font:12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:400;margin-bottom:10px}
