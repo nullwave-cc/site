@@ -10,3 +10,7 @@
 Source for [nullwave.cc](https://nullwave.cc), served with GitHub Pages.
 
 It's a static site with no build step: edit the files and push to `main`.
+
+## Licence
+
+All rights reserved, except the fm1 project folders and the fonts, which keep their own licences. See [LICENSE](LICENSE) and [TRADEMARKS.md](TRADEMARKS.md).

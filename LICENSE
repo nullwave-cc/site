@@ -1,0 +1,47 @@
+Copyright © 2026 Adro Morelos. All rights reserved.
+
+This repository holds the website at nullwave.cc. This notice covers this
+repository only. Other nullwave repositories have their own licences.
+
+Unless a file or folder listed below says otherwise, everything in it is
+covered by this notice: the text, the design, the images and screenshots,
+the portrait, the logos, the nullwave name and the ∅ mark, and the site's
+own code (HTML, CSS and JavaScript).
+
+You may not copy, modify, redistribute or reuse any of it, in whole or in
+part, without written permission from Adro Morelos.
+
+This includes using any part of it in another repository, project, product
+or website, and publishing or deploying a fork or copy of it. Forking this
+repository on GitHub, which GitHub's terms allow, gives no right to use,
+publish or deploy its contents.
+
+Official nullwave projects, meaning the repositories under
+github.com/nullwave-cc and the apps made from them, may use the nullwave
+name, logos, ∅ mark, design and site code. Anyone else needs written
+permission.
+
+You may view the source, and you may link to nullwave.cc.
+
+For the nullwave name and the ∅ mark, see also TRADEMARKS.md.
+
+
+Exceptions
+
+These folders come from the nullwave fm1 project and keep their own
+licences:
+
+- fm1/installer
+- fm1/emulator
+- fm1/quick-start
+- fm1/manual
+- fm1/editor
+
+They are under the Mozilla Public License 2.0, except for the third-party
+parts that ship with their own licence files next to them (for example
+fm1/installer/firmware and fm1/emulator/reader/espeak). Those parts stay
+under their own licences.
+
+The Baloo Da 2 font in assets/fonts, and the fonts in fm1/editor/fonts and
+fm1/emulator/fonts, are under the SIL Open Font License 1.1. See the
+OFL.txt file in each of those folders.
