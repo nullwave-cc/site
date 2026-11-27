@@ -11,7 +11,7 @@ self.onmessage = async (e) => {
     if (m.type === 'init') {
         try {
             const dir = new URL('espeak/', m.base).href;
-            importScripts(dir + 'espeak.js?v=0.1.2-1598266c');
+            importScripts(dir + 'espeak.js?v=0.1.3-7c0ffc86');
             M = await self.createEspeak({ locateFile: (p) => dir + p });
             sampleRate = M._tts_init();
             if (sampleRate <= 0) throw new Error('espeak-ng init failed (' + sampleRate + ')');

@@ -78,7 +78,9 @@ h1.nw-logo { margin-top: 0; line-height: 0; }
 h1.nw-logo img { height: 72px; width: auto; display: block; }
 </style>
 <!--nw:look-->
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/fm1/favicon.ico" sizes="any">
+<link rel="icon" href="/fm1/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/fm1/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
 <style>
 /* the page between the site's nav and footer */
@@ -172,7 +174,7 @@ body>footer{max-width:none;padding:72px 0 40px}
   <a class="brand" href="/" aria-label="nullwave home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/mark-dark.svg"><img src="/assets/mark-light.svg" width="30" height="30" alt=""></picture><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/wordmark-dark.svg"><img src="/assets/wordmark-light.svg" height="24" style="width:auto" alt="nullwave"></picture></a>
   <ul><li class="wide"><a href="/fm1/">Overview</a></li><li><a href="/fm1/installer/" aria-current="page">Install</a></li><li><a href="/fm1/quick-start/">Quick start</a></li><li><a href="/fm1/manual/">Manual</a></li></ul>
 </div></nav><!--/nw:nav-->
-<main><div class="in-flow"><header class="in-hero"><button type="button" class="lang" id="lang" lang="ja">日本語</button><div class="kicker"><b>●</b> Version 0.1.2</div><h1>Install null<span class="w">wave</span></h1><p data-t="intro">Connect the FM-1 by USB, then press Install. It works in Chrome or Edge; the browser asks once to allow MIDI: allow it.</p><ol class="in-steps" aria-label="The steps"><li><a href="#connect"><span>01</span>Connect</a></li><li><a href="#backup"><span>02</span>Back up</a></li><li><a href="#install"><span>03</span>Install</a></li><li><a href="#done"><span>04</span>Done</a></li></ol></header><section class="in-step" id="connect" data-step="1"><div class="in-grid"><div class="in-text"><div class="kicker"><b>01</b> Step 1 of 4</div><h2>Connect the FM-1.</h2><p>Plug the FM-1 into this computer with a USB data cable and switch it on. Use Chrome or Edge; when the browser asks to use MIDI devices, allow it.</p><p class="small" data-t="direct"></p></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;@splash&quot;}, {&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;PLAY_MAIN&quot;}]" role="img" aria-label="The FM-1 switched on, showing nullwave or its own firmware"></div></div></div></section><section class="in-step" id="backup" data-step="2"><div class="in-grid"><div class="in-text"><div class="kicker"><b>02</b> Step 2 of 4</div><h2>Back it up.</h2><p>Installing can lose what is saved on the FM-1. Before the first install, keep a full backup of it.</p><p class="backup"><strong data-t="bakh">Back up first.</strong> <span data-t="confirmbak"></span></p><div id="mbootopt" hidden>
+<main><div class="in-flow"><header class="in-hero"><button type="button" class="lang" id="lang" lang="ja">日本語</button><div class="kicker"><b>●</b> Version 0.1.3</div><h1>Install null<span class="w">wave</span></h1><p data-t="intro">Connect the FM-1 by USB, then press Install. It works in Chrome or Edge; the browser asks once to allow MIDI: allow it.</p><ol class="in-steps" aria-label="The steps"><li><a href="#connect"><span>01</span>Connect</a></li><li><a href="#backup"><span>02</span>Back up</a></li><li><a href="#install"><span>03</span>Install</a></li><li><a href="#done"><span>04</span>Done</a></li></ol></header><section class="in-step" id="connect" data-step="1"><div class="in-grid"><div class="in-text"><div class="kicker"><b>01</b> Step 1 of 4</div><h2>Connect the FM-1.</h2><p>Plug the FM-1 into this computer with a USB data cable and switch it on. Use Chrome or Edge; when the browser asks to use MIDI devices, allow it.</p><p class="small" data-t="direct"></p></div><div class="in-dev"><div class="fm1-3d" data-mode="still" data-view="three" data-interval="2200" data-steps="[{&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;@splash&quot;}, {&quot;on&quot;: &quot;SCREEN&quot;, &quot;screen&quot;: &quot;PLAY_MAIN&quot;}]" role="img" aria-label="The FM-1 switched on, showing nullwave or its own firmware"></div></div></div></section><section class="in-step" id="backup" data-step="2"><div class="in-grid"><div class="in-text"><div class="kicker"><b>02</b> Step 2 of 4</div><h2>Back it up.</h2><p>Installing can lose what is saved on the FM-1. Before the first install, keep a full backup of it.</p><p class="backup"><strong data-t="bakh">Back up first.</strong> <span data-t="confirmbak"></span></p><div id="mbootopt" hidden>
     <p class="opt"><input type="checkbox" id="mboot"><label for="mboot" data-t="mboot"></label></p>
     <p class="small"><span data-t="mbootwhy"></span>
       <a href="https://github.com/jvitkauskas/m-bootloader" target="_blank" rel="noopener">github.com/jvitkauskas/m-bootloader<span class="sr" data-t="newtab"> (opens in a new tab)</span></a></p>
@@ -995,14 +997,27 @@ class Updater {
     back.link.close();
   }
 
-  async waitFor(filter, ms) {
+  async waitFor(filter, ms) { /* nw:reconnect */
     const end = Date.now() + ms;
+    let fresh = Date.now() + 5000;
     while (Date.now() < end) {
       const dev = await this.find(filter);
       if (dev) return dev;
       await sleep(1000);
+      if (Date.now() >= fresh) {             // (a device back under a new USB identity is a new device to the computer:
+        fresh = Date.now() + 5000;            // some browsers list it only in a new MIDIAccess)
+        await this.refresh();
+      }
     }
     return null;
+  }
+
+  // the browser's MIDI ports asked again (the permission is already given: no prompt)
+  async refresh() {
+    try {
+      if (typeof navigator !== "undefined" && navigator.requestMIDIAccess)
+        this.access = await navigator.requestMIDIAccess({ sysex: true });
+    } catch (_) { /* (the ports as they were) */ }
   }
 
   // serve read requests until the device asks for one of the finish addresses; stops early
@@ -1079,8 +1094,8 @@ class Updater {
     if (!s2.finished) throw fail(s2.lost ? "lost" : "stopped", `the loader ${s2.lost ? "was disconnected" : "stopped"} after ${s2.served} requests. Replug and press Install again to resume.`);
     step("reboot");
     await sleep(3000);
-    const back = await this.waitFor((id) => !IS_OTA(id), 40000);
-    if (!back) throw fail("noreturn", "the device did not come back: power-cycle it");
+    const back = await this.waitFor((id) => !IS_OTA(id), 60000);
+    if (!back) throw fail("noreturn", "the FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it");
     await this.settle(back, product);
     if (!sameId(back.id.text, product)) throw fail("mismatch", `installed, but the device reports ${back.id.text}`, back.id.text);
     step("done", back.id.text);
@@ -1097,8 +1112,8 @@ class Updater {
   }
 
   async bootStages(image, product, step) {
-    const dev = await this.waitFor((id) => !IS_OTA(id) && id.text === product, 40000);
-    if (!dev) throw fail("noreturn", "the device did not come back: power-cycle it");
+    const dev = await this.waitFor((id) => !IS_OTA(id) && id.text === product, 60000);
+    if (!dev) throw fail("noreturn", "the FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it");
     step("bootstart");
     dev.link.send(UPGRADE);
     await sleep(2000);
@@ -1107,8 +1122,8 @@ class Updater {
     if (!s.finished) throw fail(s.lost ? "lost" : "bootrefused", `m-bootloader: the device stopped after ${s.served} requests: nothing was written`);
     step("bootwrite");
     await sleep(3000);
-    const back = await this.waitFor((id) => !IS_OTA(id), 40000);
-    if (!back) throw fail("noreturn", "the device did not come back: power-cycle it");
+    const back = await this.waitFor((id) => !IS_OTA(id), 60000);
+    if (!back) throw fail("noreturn", "the FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it");
     back.link.close();
     step("bootdone", back.id.text);
     return back.id.text;
@@ -1139,8 +1154,8 @@ class Updater {
   // 10 playing, 20 another build's, 21 the store's move not done, 22 the check). Throws noreturn, lost, stopped, badreq
   async installRes(region, product, onProgress) {
     const { payload, crc } = resPayload(region);
-    const dev = await this.waitFor((id) => !IS_OTA(id) && id.text === product, 40000);
-    if (!dev) throw fail("noreturn", "the device did not come back: power-cycle it");
+    const dev = await this.waitFor((id) => !IS_OTA(id) && id.text === product, 60000);
+    if (!dev) throw fail("noreturn", "the FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it");
     const { link } = dev;
     try {
       link.drain();
@@ -1207,8 +1222,8 @@ class Updater {
       if (product) {
         step("reboot");
         await sleep(3000);
-        const back = await this.waitFor((id) => !IS_OTA(id), 40000);
-        if (!back) throw fail("noreturn", "the device did not come back: power-cycle it");
+        const back = await this.waitFor((id) => !IS_OTA(id), 60000);
+        if (!back) throw fail("noreturn", "the FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it");
         await this.settle(back, product);
         if (!sameId(back.id.text, product)) throw fail("mismatch", `written, but the device reports ${back.id.text}`, back.id.text);
         step("done", back.id.text);
@@ -1248,7 +1263,7 @@ const TEXT = {
     model: "接続されている機器は FM-1 ではありません。",
     lost: "USB の接続が切れました。挿し直してもう一度押してください。",
     noloader: "書き込みモードの FM-1 が見つかりません。USB を挿し直してもう一度押してください（終わるまで書き込みモードのままです）。",
-    noreturn: "FM-1 が戻ってきません。電源を入れ直してください。",
+    noreturn: "アップデート後、FM-1 が応答しませんでした。画面に nullwave と表示されていればインストールは完了しています。このページを再読み込みして確認してください。そうでなければ電源を入れ直してください。",
     mismatch: "書き込みは終わりましたが、FM-1 が別のバージョンを報告しています: ",
     badpkg: "インストールするファイルが壊れています。ページを再読み込みしてください。",
     foreign: "FM-1 は M-VAVE 純正ファームウェアのアップデートモードで待機しています。そのアップデータはイメージの配置が異なる可能性があるため、何も書き込んでいません。M-VAVE のアップデータでその更新を終えるか、先に「純正ファームウェアに戻す」を実行してください。FM-1 の応答: ",
@@ -1315,7 +1330,7 @@ const TEXT = {
     model: "The connected device is not an FM-1.",
     lost: "The USB connection was lost. Replug it and press Install again.",
     noloader: "The FM-1 in update mode was not found. Replug the USB cable and press Install again (it stays in update mode until it is finished).",
-    noreturn: "The FM-1 did not come back. Power-cycle it.",
+    noreturn: "The FM-1 did not answer after the update. If its screen shows nullwave, it is installed: reload this page to check. Otherwise power-cycle it.",
     mismatch: "Written, but the FM-1 reports another version: ",
     badpkg: "The file to install is damaged. Reload the page.",
     foreign: "The FM-1 is waiting in the update mode of M-VAVE's own firmware, which may lay the image out differently, so nothing was written. Finish that update with M-VAVE's updater, or put the stock firmware back first (\"Back to the stock firmware\"). The FM-1 reports: ",
@@ -1395,7 +1410,7 @@ const log = (t) => {
   if (atEnd) el.scrollTop = el.scrollHeight;
 };
 let image = null, boot = null, res = null;
-const meta = {"version": "0.1.2", "product": "FM-1_60000102", "pkg": "firmware/nullwave-0.1.2.fwsc?v=ff737241b1aa", "backup": false, "res": null, "boot": {"pkg": "firmware/m-bootloader-2.4.fwsc", "version": "2.4", "sha256": "28fb1336dbff22882f545169d57afbb5a732eeb6268331aaa444f1c657b286d3"}};
+const meta = {"version": "0.1.3", "product": "FM-1_60000103", "pkg": "firmware/nullwave-0.1.3.fwsc?v=3fb3d20669f9", "backup": false, "res": null, "boot": {"pkg": "firmware/m-bootloader-2.4.fwsc", "version": "2.4", "sha256": "28fb1336dbff22882f545169d57afbb5a732eeb6268331aaa444f1c657b286d3"}};
 /* the firmware's own steps around an install (its site's install_app script, or none): before(midi, ui) runs before
    anything is written, may ask (ui.ask) and returns its state, or false to stop there; after(midi, ui, state) once
    the new firmware has started (it waits for it itself). A failure in after is said, the install stays done */
