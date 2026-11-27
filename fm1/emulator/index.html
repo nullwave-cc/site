@@ -2,7 +2,7 @@
 <!-- SPDX-License-Identifier: MPL-2.0
      Copyright (C) 2026 Charles Vestal -->
 <html lang="en">
-<head><script>try{if(localStorage.getItem("nullwave-emu-version")!=="0.1.0"){localStorage.removeItem("nullwave-emu-store");localStorage.setItem("nullwave-emu-version","0.1.0")}}catch(e){}</script>
+<head><script>try{if(localStorage.getItem("nullwave-emu-version")!=="0.1.1"){localStorage.removeItem("nullwave-emu-store");localStorage.setItem("nullwave-emu-version","0.1.1")}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>nullwave fm1 emulator</title>
@@ -175,7 +175,7 @@ main kbd{background:none;border:1px solid var(--edge)}
 <header>
   
 </header>
-<main><div class="em-hero"><div class="kicker"><b>●</b> Version 0.1.0</div><h1>Emulator</h1><p class="lead"><b class="nb">nullwave</b> fm1 running in the browser: the same firmware, with its screen, knobs, buttons and keys. Click or tap the panel, or play it from the computer's keyboard.</p></div>
+<main><div class="em-hero"><div class="kicker"><b>●</b> Version 0.1.1</div><h1>Emulator</h1><p class="lead"><b class="nb">nullwave</b> fm1 running in the browser: the same firmware, with its screen, knobs, buttons and keys. Click or tap the panel, or play it from the computer's keyboard.</p></div>
 <h2 class="sr">The FM-1</h2>
 <p class="turn">Turn your phone sideways for bigger controls.</p>
 <div class="devicebox">
@@ -717,7 +717,7 @@ $("speak").addEventListener("toggle", () => { prefs.speakOpen = $("speak").open;
 if (["sr", "voice", "off"].includes(prefs.speak)) document.querySelector(`input[name="speak"][value="${prefs.speak}"]`).checked = true;
 let helloTimer = null, heard = false, said = false, words = [], wordsReady = null, chain = Promise.resolve();
 let spoken = (s) => s, tts = null, ttsReady = null, last = null, liveFlip = false, keeping = 0;
-const wordsLib = import("./reader/words.js?v=0.1.0-ee6a53b8").then((m) => { spoken = m.spoken; return m; }).catch(() => null);
+const wordsLib = import("./reader/words.js?v=0.1.1-1ba2bb13").then((m) => { spoken = m.spoken; return m; }).catch(() => null);
 function sysex(bytes) { send({ type: "sysex", bytes }); }
 function readerOn() {
   if (!node || helloTimer || speakMode() === "off") return;
@@ -784,7 +784,7 @@ function onSaid(bytes) {
   }
 }
 async function voiceOn() {
-  if (!ttsReady) ttsReady = import("./reader/tts.js?v=0.1.0-ee6a53b8").then((m) => m.createTTS()).then((t) => (tts = t))
+  if (!ttsReady) ttsReady = import("./reader/tts.js?v=0.1.1-1ba2bb13").then((m) => m.createTTS()).then((t) => (tts = t))
     .catch(() => { showAlert("The built-in voice could not start in this browser. Choose System screen reader."); ttsReady = null; });
   const t = await ttsReady;
   if (t) t.unlock();
@@ -826,9 +826,9 @@ async function switchOn() {
   try {
     const ac = new AudioContext({ sampleRate: 44100, latencyHint: "interactive" });
     if (speakMode() === "voice") voiceOn();
-    const [wasm] = await Promise.all([fetch("app.wasm?v=0.1.0-ee6a53b8").then((r) => { if (!r.ok) throw new Error(`app.wasm: ${r.status}`); return r.arrayBuffer(); }),
-                                      ac.audioWorklet.addModule("app_worklet.js?v=0.1.0-ee6a53b8").catch(() => {})
-                                        .then(() => ac.audioWorklet.addModule("worklet.js?v=0.1.0-ee6a53b8"))]);
+    const [wasm] = await Promise.all([fetch("app.wasm?v=0.1.1-1ba2bb13").then((r) => { if (!r.ok) throw new Error(`app.wasm: ${r.status}`); return r.arrayBuffer(); }),
+                                      ac.audioWorklet.addModule("app_worklet.js?v=0.1.1-1ba2bb13").catch(() => {})
+                                        .then(() => ac.audioWorklet.addModule("worklet.js?v=0.1.1-1ba2bb13"))]);
     node = new AudioWorkletNode(ac, "fm1", { numberOfInputs: 0, numberOfOutputs: 1, outputChannelCount: [2] });
     gain = ac.createGain();
     gain.gain.value = $("mute").getAttribute("aria-pressed") === "true" ? 0 : 1;
@@ -852,7 +852,7 @@ async function switchOn() {
     });
     // the app's own part of the page (APP_DIR/web/emu/app.js), if it has one: attach({ node, ac, status }), and
     // message(m) for the worklet's { type: "app" } messages
-    appPart = await import("./app.js?v=0.1.0-ee6a53b8").catch(() => null);
+    appPart = await import("./app.js?v=0.1.1-1ba2bb13").catch(() => null);
     if (appPart && appPart.attach) appPart.attach({ node, ac, status: (t) => showAlert(t) });
     node.port.postMessage({ type: "load", wasm, store: loadStore(), master }, [wasm]);
     await ready;
@@ -891,7 +891,7 @@ $("reset").addEventListener("click", () => {
 <!--nw:foot--><footer><div class="wrap">
   <div class="fbrand"><a href="/" aria-label="nullwave home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/lockup-dark.svg"><img class="lockup" src="/assets/lockup-light.svg" width="562" height="200" alt="nullwave"></picture></a><p>Open-source tools for making music.</p></div>
   <div class="fcols">
-    <div><h4><b class="nb">nullwave</b> fm1</h4><ul><li><a href="/fm1/">Overview</a></li><li><a href="/fm1/installer/">Installer</a></li><li><a href="/fm1/emulator/">Emulator</a></li><li><a href="/fm1/quick-start/">Quick start</a></li><li><a href="/fm1/manual/">Manual</a></li><li><a href="/fm1/emulator/">Emulator</a></li><li><span>Editor <em>later</em></span></li></ul></div>
+    <div><h4><b class="nb">nullwave</b> fm1</h4><ul><li><a href="/fm1/">Overview</a></li><li><a href="/fm1/installer/">Installer</a></li><li><a href="/fm1/quick-start/">Quick start</a></li><li><a href="/fm1/manual/">Manual</a></li><li><a href="/fm1/emulator/">Emulator</a></li><li><a href="/fm1/editor/">Editor</a></li></ul></div>
     <div><h4>Products</h4><ul><li><a href="/fm1/"><b class="nb">nullwave</b> fm1</a></li><li><span><b class="nb">nullwave</b> learn <em>coming soon</em></span></li><li><span><b class="nb">nullwave</b> create <em>coming soon</em></span></li></ul></div>
     <div><h4>Open source</h4><ul><li><a href="https://github.com/nullwave-cc">GitHub</a></li><li><a href="https://github.com/nullwave-cc/fm1">Firmware source</a></li><li><a href="https://github.com/nullwave-cc/fm1/issues">Report a problem</a></li><li><a href="/#about">About</a></li></ul></div>
   </div>
