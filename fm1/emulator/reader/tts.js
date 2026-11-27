@@ -8,7 +8,7 @@
 
 export async function createTTS(baseUrl = new URL('./', import.meta.url).href) {
     const base = new URL(baseUrl, location.href).href.replace(/\/?$/, '/');
-    const worker = new Worker(new URL('tts_worker.js?v=0.1.1-1ba2bb13', base));
+    const worker = new Worker(new URL('tts_worker.js?v=0.1.2-1598266c', base));
     const sampleRate = await new Promise((resolve, reject) => {
         worker.onmessage = (e) => e.data.type === 'ready' ? resolve(e.data.sampleRate) : reject(new Error(e.data.message));
         worker.onerror = (e) => reject(new Error(e.message || 'tts worker failed to load'));

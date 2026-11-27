@@ -11,7 +11,7 @@
 //                    { t: "gone", emu }          when the page goes
 //                    { t: "from", emu, data }    a whole message the FM-1 sent
 //   page -> emulator { t: "to", emu, data }      a whole message into the FM-1, as from its USB port
-import { toDevice, fromDevice } from "./midi.js?v=0.1.1-1ba2bb13";
+import { toDevice, fromDevice } from "./midi.js?v=0.1.2-1598266c";
 
 export const CHANNEL = "fm1-emu";
 
